@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",               // Ensures compatibility with modern browsers
+    "useDefineForClassFields": true,  // For correct class field behavior (React 18+)
+    "lib": ["ES2020", "DOM", "DOM.Iterable"], // Includes essential JS and DOM types for React
+    "module": "ESNext",               // Ensures ES module output for modern JavaScript
+    "skipLibCheck": true,             // Skips type checking of declaration files (speeds up the build)
+    "jsx": "react-jsx",               // React 17 JSX Transform, no need for React import
+    "strict": true,                   // Enables all strict type-checking options for better safety
+    "noUnusedLocals": true,           // Flags unused local variables
+    "noUnusedParameters": true,       // Flags unused function parameters
+    "noFallthroughCasesInSwitch": true, // Prevent fallthrough in switch cases
+    "noUncheckedSideEffectImports": true, // Avoid side effects from imports
+    "esModuleInterop": true,          // Ensures compatibility with CommonJS modules
+    "moduleResolution": "node",       // Allows module resolution to follow Node.js behavior
+    "resolveJsonModule": true         // Allows importing of .json files as modules
+  },
+  "include": ["src"]  // Includes all files in the src directory for the project
+}
