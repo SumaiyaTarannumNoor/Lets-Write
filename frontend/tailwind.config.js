@@ -11,16 +11,16 @@ export default {
       },
       colors: {
         primary: {
-          50: '#f3f4f6',
-          100: '#e5e7eb',
-          200: '#d1d5db',
-          300: '#9ca3af',
-          400: '#6b7280',
-          500: '#374151',
-          600: '#1f2937',
-          700: '#111827',
-          800: '#0f172a',
-          900: '#0c0a09',
+          50: '#ebf8ff',     // lightest blue
+          100: '#bee3f8',    // baby blue
+          200: '#90cdf4',    // light blue
+          300: '#63b3ed',    // sky blue
+          400: '#4299e1',    // medium blue
+          500: '#3182ce',    // base primary blue
+          600: '#2b6cb0',    // darker blue
+          700: '#2c5282',    // navy blue
+          800: '#2a4365',    // deep navy
+          900: '#1A365D',    // almost black-blue
         }
       },
       backgroundImage: {

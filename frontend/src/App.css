@@ -15,7 +15,7 @@ input[type="range"]:focus {
 }
 
 input[type="range"]::-webkit-slider-track {
-  background: #6b7280;
+  background: #6b7280; /* primary-400 */
   height: 8px;
   border-radius: 4px;
 }
@@ -26,19 +26,19 @@ input[type="range"]::-webkit-slider-thumb {
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background: #8b5cf6;
+  background: #374151; /* primary-500 */
   cursor: pointer;
   border: 2px solid #ffffff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
-  background: #7c3aed;
+  background: #1f2937; /* primary-600 */
   transform: scale(1.1);
 }
 
 input[type="range"]::-moz-range-track {
-  background: #6b7280;
+  background: #6b7280; /* primary-400 */
   height: 8px;
   border-radius: 4px;
   border: none;
@@ -48,7 +48,7 @@ input[type="range"]::-moz-range-thumb {
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background: #8b5cf6;
+  background: #374151; /* primary-500 */
   cursor: pointer;
   border: 2px solid #ffffff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);

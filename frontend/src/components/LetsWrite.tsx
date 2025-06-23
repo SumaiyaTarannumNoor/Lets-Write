@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Copy, Download, RefreshCw, Sparkles, FileText, Settings, Moon, Sun, AlertCircle } from 'lucide-react';
+import letsWrite from '../assets/letsWrite.png'
 
 // API function to connect to your Flask backend
 const generateText = async (prompt: string, length: number): Promise<string> => {
@@ -89,17 +90,21 @@ const LetsWrite = () => {
   return (
     <div className={`min-h-screen transition-colors duration-300 ${
       isDarkMode 
-        ? 'bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900' 
-        : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50'
+        ? 'bg-gradient-to-br from-gray-900 via-blue-900 to-blue-800' 
+        : 'bg-gradient-to-br from-blue-50 via-blue-100 to-sky-50'
     }`}>
       <div className="container mx-auto px-4 py-8 max-w-6xl">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
-            <div className={`p-3 rounded-2xl ${
-              isDarkMode ? 'bg-purple-600/20 border border-purple-500/30' : 'bg-white border border-purple-200'
+            <div className={`p-2 rounded-2xl ${
+              isDarkMode ? 'bg-blue-600/20 border border-blue-500/30' : 'bg-white border border-blue-200'
             }`}>
-              <Sparkles className={`h-8 w-8 ${isDarkMode ? 'text-purple-400' : 'text-purple-600'}`} />
+              <img 
+                src= {letsWrite} 
+                alt="Let's Write Logo" 
+                className="h-16 w-16 object-contain"
+              />
             </div>
             <div>
               <h1 className={`text-4xl font-bold ${
@@ -108,7 +113,7 @@ const LetsWrite = () => {
                 Let's Write
               </h1>
               <p className={`text-lg ${
-                isDarkMode ? 'text-purple-300' : 'text-purple-600'
+                isDarkMode ? 'text-blue-300' : 'text-blue-600'
               }`}>
                 AI-Powered Text Generation
               </p>
@@ -207,7 +212,7 @@ const LetsWrite = () => {
               : 'bg-white/80 border-gray-200 backdrop-blur-sm shadow-sm'
           }`}>
             <div className="flex items-center gap-2 mb-4">
-              <FileText className={`h-5 w-5 ${isDarkMode ? 'text-purple-400' : 'text-purple-600'}`} />
+              <FileText className={`h-5 w-5 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
               <h2 className={`text-xl font-semibold ${
                 isDarkMode ? 'text-white' : 'text-gray-900'
               }`}>
@@ -222,8 +227,8 @@ const LetsWrite = () => {
               placeholder="Enter your writing prompt here... What would you like me to help you write?"
               className={`w-full min-h-48 p-4 rounded-xl border resize-none transition-all duration-200 ${
                 isDarkMode 
-                  ? 'bg-gray-900/50 border-gray-600 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20' 
-                  : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20'
+                  ? 'bg-gray-900/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20' 
+                  : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20'
               } focus:outline-none`}
             />
             
@@ -252,7 +257,7 @@ const LetsWrite = () => {
                   className={`px-6 py-2 rounded-lg font-medium transition-all duration-200 flex items-center gap-2 ${
                     !prompt.trim() || isGenerating
                       ? 'bg-gray-400 cursor-not-allowed text-gray-200'
-                      : 'bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105'
+                      : 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl transform hover:scale-105'
                   }`}
                 >
                   {isGenerating ? (
@@ -279,7 +284,7 @@ const LetsWrite = () => {
           }`}>
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
-                <Sparkles className={`h-5 w-5 ${isDarkMode ? 'text-purple-400' : 'text-purple-600'}`} />
+                <Sparkles className={`h-5 w-5 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
                 <h2 className={`text-xl font-semibold ${
                   isDarkMode ? 'text-white' : 'text-gray-900'
                 }`}>
@@ -324,7 +329,7 @@ const LetsWrite = () => {
                 <div className="flex items-center justify-center h-48">
                   <div className="text-center">
                     <RefreshCw className={`h-8 w-8 animate-spin mx-auto mb-4 ${
-                      isDarkMode ? 'text-purple-400' : 'text-purple-600'
+                      isDarkMode ? 'text-blue-400' : 'text-blue-600'
                     }`} />
                     <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                       Generating your text...

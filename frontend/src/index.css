@@ -10,7 +10,7 @@
   .glass-morphism {
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
-    background-color: rgba(17, 25, 40, 0.75);
+    background-color: rgba(15, 23, 42, 0.75); /* primary.800 with alpha */
     border: 1px solid rgba(255, 255, 255, 0.125);
   }
 }
@@ -21,16 +21,16 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #1f2937;
+  background: #1f2937; /* primary.600 */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #4b5563;
+  background: #374151; /* primary.500 */
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6b7280;
+  background: #6b7280; /* primary.400 */
 }
 
 /* Smooth transitions */
