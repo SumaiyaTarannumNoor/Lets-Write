@@ -90,30 +90,30 @@ const LetsWrite = () => {
   return (
     <div className={`min-h-screen transition-colors duration-300 ${
       isDarkMode 
-        ? 'bg-gradient-to-br from-gray-900 via-blue-900 to-blue-800' 
-        : 'bg-gradient-to-br from-blue-50 via-blue-100 to-sky-50'
+        ? 'bg-gradient-to-br from-slate-900 via-blue-900 to-blue-800' 
+        : 'bg-gradient-to-br from-blue-50 via-blue-100 to-blue-200'
     }`}>
       <div className="container mx-auto px-4 py-8 max-w-6xl">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
             <div className={`p-2 rounded-2xl ${
-              isDarkMode ? 'bg-blue-600/20 border border-blue-500/30' : 'bg-white border border-blue-200'
+              isDarkMode ? 'bg-blue-600/20 border border-blue-400/40' : 'bg-white border border-blue-300 shadow-md'
             }`}>
               <img 
-                src= {letsWrite} 
+                src={letsWrite} 
                 alt="Let's Write Logo" 
                 className="h-16 w-16 object-contain"
               />
             </div>
             <div>
               <h1 className={`text-4xl font-bold ${
-                isDarkMode ? 'text-white' : 'text-gray-900'
+                isDarkMode ? 'text-white' : 'text-blue-900'
               }`}>
                 Let's Write
               </h1>
               <p className={`text-lg ${
-                isDarkMode ? 'text-blue-300' : 'text-blue-600'
+                isDarkMode ? 'text-blue-300' : 'text-blue-700'
               }`}>
                 AI-Powered Text Generation
               </p>
@@ -125,8 +125,8 @@ const LetsWrite = () => {
               onClick={() => setShowSettings(!showSettings)}
               className={`p-3 rounded-xl transition-all duration-200 ${
                 isDarkMode 
-                  ? 'bg-gray-800/50 hover:bg-gray-700/50 text-gray-300 hover:text-white border border-gray-700' 
-                  : 'bg-white hover:bg-gray-50 text-gray-600 hover:text-gray-900 border border-gray-200 shadow-sm'
+                  ? 'bg-blue-800/50 hover:bg-blue-700/50 text-blue-300 hover:text-white border border-blue-700' 
+                  : 'bg-white hover:bg-blue-50 text-blue-600 hover:text-blue-800 border border-blue-300 shadow-sm'
               }`}
             >
               <Settings className="h-5 w-5" />
@@ -135,8 +135,8 @@ const LetsWrite = () => {
               onClick={() => setIsDarkMode(!isDarkMode)}
               className={`p-3 rounded-xl transition-all duration-200 ${
                 isDarkMode 
-                  ? 'bg-gray-800/50 hover:bg-gray-700/50 text-gray-300 hover:text-white border border-gray-700' 
-                  : 'bg-white hover:bg-gray-50 text-gray-600 hover:text-gray-900 border border-gray-200 shadow-sm'
+                  ? 'bg-blue-800/50 hover:bg-blue-700/50 text-blue-300 hover:text-white border border-blue-700' 
+                  : 'bg-white hover:bg-blue-50 text-blue-600 hover:text-blue-800 border border-blue-300 shadow-sm'
               }`}
             >
               {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
@@ -160,18 +160,18 @@ const LetsWrite = () => {
         {showSettings && (
           <div className={`mb-6 p-6 rounded-2xl border transition-all duration-300 ${
             isDarkMode 
-              ? 'bg-gray-800/30 border-gray-700/50 backdrop-blur-sm' 
-              : 'bg-white/80 border-gray-200 backdrop-blur-sm shadow-sm'
+              ? 'bg-blue-900/30 border-blue-700/50 backdrop-blur-sm' 
+              : 'bg-white/90 border-blue-300 backdrop-blur-sm shadow-lg'
           }`}>
             <h3 className={`text-lg font-semibold mb-4 ${
-              isDarkMode ? 'text-white' : 'text-gray-900'
+              isDarkMode ? 'text-white' : 'text-blue-900'
             }`}>
               Generation Settings
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className={`block text-sm font-medium mb-2 ${
-                  isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                  isDarkMode ? 'text-blue-300' : 'text-blue-700'
                 }`}>
                   Character Count: {wordCount}
                 </label>
@@ -181,20 +181,27 @@ const LetsWrite = () => {
                   max="1000"
                   value={wordCount}
                   onChange={(e) => setWordCount(parseInt(e.target.value))}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+                  className={`w-full h-3 rounded-lg appearance-none cursor-pointer ${
+                    isDarkMode ? 'bg-blue-800' : 'bg-blue-200'
+                  }`}
+                  style={{
+                    background: isDarkMode 
+                      ? `linear-gradient(to right, #2563eb 0%, #2563eb ${(wordCount - 50) / (1000 - 50) * 100}%, #1e40af ${(wordCount - 50) / (1000 - 50) * 100}%, #1e40af 100%)`
+                      : `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${(wordCount - 50) / (1000 - 50) * 100}%, #bfdbfe ${(wordCount - 50) / (1000 - 50) * 100}%, #bfdbfe 100%)`
+                  }}
                 />
               </div>
               <div>
                 <label className={`block text-sm font-medium mb-2 ${
-                  isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                  isDarkMode ? 'text-blue-300' : 'text-blue-700'
                 }`}>
                   Model Info
                 </label>
                 <div className={`p-3 rounded-lg ${
-                  isDarkMode ? 'bg-gray-700/50' : 'bg-gray-100'
+                  isDarkMode ? 'bg-blue-800/50' : 'bg-blue-100'
                 }`}>
                   <p className={`text-sm ${
-                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                    isDarkMode ? 'text-blue-300' : 'text-blue-700'
                   }`}>
                     CharLSTM with 6 layers, 160 hidden units
                   </p>
@@ -208,13 +215,13 @@ const LetsWrite = () => {
           {/* Input Section */}
           <div className={`p-6 rounded-2xl border transition-all duration-300 ${
             isDarkMode 
-              ? 'bg-gray-800/30 border-gray-700/50 backdrop-blur-sm' 
-              : 'bg-white/80 border-gray-200 backdrop-blur-sm shadow-sm'
+              ? 'bg-blue-900/30 border-blue-700/50 backdrop-blur-sm' 
+              : 'bg-white/90 border-blue-300 backdrop-blur-sm shadow-lg'
           }`}>
             <div className="flex items-center gap-2 mb-4">
               <FileText className={`h-5 w-5 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
               <h2 className={`text-xl font-semibold ${
-                isDarkMode ? 'text-white' : 'text-gray-900'
+                isDarkMode ? 'text-white' : 'text-blue-900'
               }`}>
                 Your Prompt
               </h2>
@@ -227,14 +234,14 @@ const LetsWrite = () => {
               placeholder="Enter your writing prompt here... What would you like me to help you write?"
               className={`w-full min-h-48 p-4 rounded-xl border resize-none transition-all duration-200 ${
                 isDarkMode 
-                  ? 'bg-gray-900/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20' 
-                  : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20'
+                  ? 'bg-blue-950/50 border-blue-600 text-white placeholder-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30' 
+                  : 'bg-white border-blue-400 text-blue-900 placeholder-blue-500 focus:border-blue-600 focus:ring-2 focus:ring-blue-500/30'
               } focus:outline-none`}
             />
             
             <div className="flex items-center justify-between mt-4">
               <span className={`text-sm ${
-                isDarkMode ? 'text-gray-400' : 'text-gray-500'
+                isDarkMode ? 'text-blue-400' : 'text-blue-600'
               }`}>
                 {prompt.length} characters
               </span>
@@ -244,8 +251,8 @@ const LetsWrite = () => {
                   onClick={clearAll}
                   className={`px-4 py-2 rounded-lg transition-all duration-200 ${
                     isDarkMode 
-                      ? 'bg-gray-700/50 hover:bg-gray-600/50 text-gray-300 hover:text-white' 
-                      : 'bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-900'
+                      ? 'bg-blue-800/50 hover:bg-blue-700/50 text-blue-300 hover:text-white' 
+                      : 'bg-blue-100 hover:bg-blue-200 text-blue-600 hover:text-blue-800'
                   }`}
                 >
                   <RefreshCw className="h-4 w-4" />
@@ -279,14 +286,14 @@ const LetsWrite = () => {
           {/* Output Section */}
           <div className={`p-6 rounded-2xl border transition-all duration-300 ${
             isDarkMode 
-              ? 'bg-gray-800/30 border-gray-700/50 backdrop-blur-sm' 
-              : 'bg-white/80 border-gray-200 backdrop-blur-sm shadow-sm'
+              ? 'bg-blue-900/30 border-blue-700/50 backdrop-blur-sm' 
+              : 'bg-white/90 border-blue-300 backdrop-blur-sm shadow-lg'
           }`}>
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <Sparkles className={`h-5 w-5 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
                 <h2 className={`text-xl font-semibold ${
-                  isDarkMode ? 'text-white' : 'text-gray-900'
+                  isDarkMode ? 'text-white' : 'text-blue-900'
                 }`}>
                   Generated Text
                 </h2>
@@ -298,8 +305,8 @@ const LetsWrite = () => {
                     onClick={copyToClipboard}
                     className={`p-2 rounded-lg transition-all duration-200 ${
                       isDarkMode 
-                        ? 'bg-gray-700/50 hover:bg-gray-600/50 text-gray-300 hover:text-white' 
-                        : 'bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-900'
+                        ? 'bg-blue-800/50 hover:bg-blue-700/50 text-blue-300 hover:text-white' 
+                        : 'bg-blue-100 hover:bg-blue-200 text-blue-600 hover:text-blue-800'
                     }`}
                     title="Copy to clipboard"
                   >
@@ -309,8 +316,8 @@ const LetsWrite = () => {
                     onClick={downloadText}
                     className={`p-2 rounded-lg transition-all duration-200 ${
                       isDarkMode 
-                        ? 'bg-gray-700/50 hover:bg-gray-600/50 text-gray-300 hover:text-white' 
-                        : 'bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-900'
+                        ? 'bg-blue-800/50 hover:bg-blue-700/50 text-blue-300 hover:text-white' 
+                        : 'bg-blue-100 hover:bg-blue-200 text-blue-600 hover:text-blue-800'
                     }`}
                     title="Download as text file"
                   >
@@ -322,8 +329,8 @@ const LetsWrite = () => {
             
             <div className={`min-h-48 p-4 rounded-xl border ${
               isDarkMode 
-                ? 'bg-gray-900/50 border-gray-600' 
-                : 'bg-gray-50/50 border-gray-300'
+                ? 'bg-blue-950/50 border-blue-600' 
+                : 'bg-blue-50/50 border-blue-400'
             }`}>
               {isGenerating ? (
                 <div className="flex items-center justify-center h-48">
@@ -331,21 +338,21 @@ const LetsWrite = () => {
                     <RefreshCw className={`h-8 w-8 animate-spin mx-auto mb-4 ${
                       isDarkMode ? 'text-blue-400' : 'text-blue-600'
                     }`} />
-                    <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                    <p className={`${isDarkMode ? 'text-blue-300' : 'text-blue-700'}`}>
                       Generating your text...
                     </p>
                   </div>
                 </div>
               ) : generatedText ? (
                 <div className={`whitespace-pre-wrap leading-relaxed ${
-                  isDarkMode ? 'text-gray-100' : 'text-gray-800'
+                  isDarkMode ? 'text-blue-100' : 'text-blue-900'
                 }`}>
                   {generatedText}
                 </div>
               ) : (
                 <div className="flex items-center justify-center h-48">
                   <p className={`text-center ${
-                    isDarkMode ? 'text-gray-500' : 'text-gray-400'
+                    isDarkMode ? 'text-blue-500' : 'text-blue-400'
                   }`}>
                     Your generated text will appear here...
                   </p>
@@ -355,7 +362,7 @@ const LetsWrite = () => {
             
             {generatedText && (
               <div className="mt-4 text-sm text-center">
-                <span className={`${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                <span className={`${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`}>
                   {generatedText.split(' ').length} words • {generatedText.length} characters
                 </span>
               </div>
@@ -365,7 +372,7 @@ const LetsWrite = () => {
 
         {/* Footer */}
         <div className="mt-12 text-center">
-          <p className={`text-sm ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>
+          <p className={`text-sm ${isDarkMode ? 'text-blue-500' : 'text-blue-400'}`}>
             Powered by your custom CharLSTM text generation model
           </p>
         </div>
