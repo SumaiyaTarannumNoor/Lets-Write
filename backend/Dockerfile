@@ -12,7 +12,5 @@ RUN pip install --upgrade pip \
  && pip install -r requirements.txt
 
 # Expose port expected by Fly.io
-EXPOSE 8080
-
-# Run the Flask app using gunicorn
-CMD ["gunicorn", "-b", "0.0.0.0:8080", "app:app"]
+EXPOSE 8000
+CMD ["python", "app.py"]  # or "wsgi:app" depending on setup
