@@ -1,4 +1,4 @@
-app = "letswrite-frontend"  # 👈 Use your Fly app name
+app = "letswrite-frontend" 
 
 primary_region = "bom"
 
