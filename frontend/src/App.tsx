@@ -1,5 +1,5 @@
 import React from 'react';
-import LetsWrite from './components/LetsWrite';
+import LetsWrite from './Components/LetsWrite';
 import './App.css';
 
 function App() {
