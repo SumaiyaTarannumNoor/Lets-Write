@@ -267,14 +267,8 @@ const LetsWrite = () => {
             )}
           </div>
         </div>
-
-        {/* Footer */}
-        <div className="mt-12 text-center">
-          <p className="text-sm text-blue-500">
-            Powered by your custom CharLSTM text generation model
-          </p>
-        </div>
       </div>
+      <Footer/>
     </div>
   );
 };
