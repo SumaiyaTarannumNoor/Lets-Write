@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Lock, Mail, LogIn } from "lucide-react";
+import letsWrite from "../assets/letsWrite.png";
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -6,60 +8,81 @@ const LoginPage: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Email:", email, "Password:", password);
-    // 🔑 You can call your backend API here
+    console.log("Login info:", { email, password });
+    // TODO: Hook this to your Flask login route
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md bg-white shadow-lg rounded-2xl p-8">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-          Login
-        </h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-blue-800 px-4">
+      <div className="w-full max-w-md p-8 rounded-2xl shadow-xl border border-blue-700/50 bg-blue-900/30 backdrop-blur-sm">
+        {/* Logo + Title */}
+        <div className="flex flex-col items-center mb-8">
+          <div className="p-2 rounded-2xl bg-blue-600/20 border border-blue-400/40">
+            <img
+              src={letsWrite}
+              alt="Let's Write Logo"
+              className="h-16 w-16 object-contain"
+            />
+          </div>
+          <h1 className="mt-4 text-3xl font-bold text-white">Welcome Back</h1>
+          <p className="text-blue-300">Login to continue</p>
+        </div>
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="space-y-6">
           {/* Email */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
+            <label className="block text-sm font-medium text-blue-300 mb-2">
+              Email Address
             </label>
-            <input
-              type="email"
-              id="email"
-              className="mt-1 w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+            <div className="relative">
+              <Mail className="absolute left-3 top-3 h-5 w-5 text-blue-500" />
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full pl-10 pr-4 py-3 rounded-lg border bg-white text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                placeholder="you@example.com"
+              />
+            </div>
           </div>
 
           {/* Password */}
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-blue-300 mb-2">
               Password
             </label>
-            <input
-              type="password"
-              id="password"
-              className="mt-1 w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+            <div className="relative">
+              <Lock className="absolute left-3 top-3 h-5 w-5 text-blue-500" />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="w-full pl-10 pr-4 py-3 rounded-lg border bg-white text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                placeholder="••••••••"
+              />
+            </div>
           </div>
 
-          {/* Submit Button */}
+          {/* Submit */}
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition"
+            className="w-full py-3 px-4 rounded-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center gap-2"
           >
+            <LogIn className="h-5 w-5" />
             Login
           </button>
         </form>
 
-        {/* Extra Links */}
-        <p className="text-sm text-center text-gray-600 mt-4">
+        {/* Footer */}
+        <p className="mt-6 text-center text-sm text-blue-400">
           Don’t have an account?{" "}
-          <a href="/signup" className="text-indigo-600 hover:underline">
+          <a
+            href="/signup"
+            className="text-blue-300 hover:text-white transition-colors"
+          >
             Sign up
           </a>
         </p>
