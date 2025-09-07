@@ -1,12 +1,14 @@
-import React from 'react';
-import LetsWrite from './Components/LetsWrite';
-import './App.css';
+import { BrowserRouter } from "react-router-dom";
+import AppRoutes from "./Router/Route";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <LetsWrite />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <AppRoutes />
+      </div>
+    </BrowserRouter>
   );
 }
 
