@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Copy, Download, RefreshCw, Sparkles, FileText, Settings, AlertCircle } from 'lucide-react';
 import letsWrite from '../assets/letsWrite.png'
+import Navbar from '../Components/Layout/Navbar';
+import Footer from '../Components/Layout/Footer';
 
 // API function to connect to your Flask backend
 const generateText = async (prompt: string, length: number): Promise<string> => {
@@ -87,9 +89,9 @@ const LetsWrite = () => {
 
   return (
     <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-slate-900 via-blue-900 to-blue-800">
-      <div className="container mx-auto px-4 py-8 max-w-6xl">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+     <Navbar/>
+        <div className="container mx-auto px-4 py-8 max-w-6xl">
+        {/* Header */}        <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-2xl bg-blue-600/20 border border-blue-400/40">
               <img 
