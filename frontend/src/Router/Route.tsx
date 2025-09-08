@@ -1,7 +1,6 @@
 // src/Router/Routes.tsx
 import { Routes, Route } from "react-router-dom";
 import LetsWrite from "../Pages/LetsWrite";
-import Home from "../Pages/LetsWrite";
 import LoginPage from "../Pages/LoginPage";
 import RegistrationPage from "../Pages/RegistrationPage";
 import ProfilePage from "../Pages/ProfilePage";
