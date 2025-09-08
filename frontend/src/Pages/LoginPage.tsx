@@ -3,10 +3,13 @@ import { Lock, Mail, LogIn } from "lucide-react";
 import letsWrite from "../assets/letsWrite.png";
 import Navbar from "../Components/Layout/Navbar";
 import Footer from "../Components/Layout/Footer";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,7 +81,7 @@ const LoginPage: React.FC = () => {
               type="submit"
               className="w-full py-3 px-4 rounded-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center gap-2"
             >
-              <LogIn className="h-5 w-5" />
+              <LogIn className="h-5 w-5" onClick={()=>navigate("/profile")}/>
               Login
             </button>
           </form>
