@@ -5,6 +5,9 @@ import Navbar from "../Components/Layout/Navbar";
 import Footer from "../Components/Layout/Footer";
 import countryList from "react-select-country-list";
 import Select from "react-select";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+
 
 const RegistrationPage: React.FC = () => {
   const [name, setName] = useState("");
@@ -90,14 +93,12 @@ const RegistrationPage: React.FC = () => {
                 Phone Number
               </label>
               <div className="relative">
-                <Phone className="absolute left-3 top-3 h-5 w-5 text-blue-500" />
-                <input
-                  type="tel"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  required
-                  className="w-full pl-10 pr-4 py-3 rounded-lg border bg-white text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                  placeholder="+1234567890"
+                <PhoneInput
+                    country={"bangladesh"}
+                    value={phone}
+                    onChange={(value) => setPhone(value)}
+                    inputClass = "!w-full !h-12 !text-base !pl-12 !rounded-lg border border-blue-300"
+                    buttonClass= "!rounded-l-lg"
                 />
               </div>
             </div>
