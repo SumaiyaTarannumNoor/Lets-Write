@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Lock, Mail, User, Phone, Globe, LogIn } from "lucide-react";
 import letsWrite from "../assets/letsWrite.png";
 import Navbar from "../Components/Layout/Navbar";
 import Footer from "../Components/Layout/Footer";
+import countryList from "react-select-country-list";
+import Select from "react-select";
 
 const RegistrationPage: React.FC = () => {
   const [name, setName] = useState("");
@@ -10,6 +12,12 @@ const RegistrationPage: React.FC = () => {
   const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("");
   const [password, setPassword] = useState("");
+
+  const options = useMemo (() => countryList().getData(), [])
+
+  const handleChange = (value: any) => {
+    setCountry(value);
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -101,14 +109,8 @@ const RegistrationPage: React.FC = () => {
               </label>
               <div className="relative">
                 <Globe className="absolute left-3 top-3 h-5 w-5 text-blue-500" />
-                <input
-                  type="text"
-                  value={country}
-                  onChange={(e) => setCountry(e.target.value)}
-                  required
-                  className="w-full pl-10 pr-4 py-3 rounded-lg border bg-white text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                  placeholder="Country"
-                />
+                <Select options={options} value={country} onChange = {handleChange} 
+                styles={{control: (base) => ({...base, color:"gray"}) }}/>
               </div>
             </div>
 
