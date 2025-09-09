@@ -14,14 +14,14 @@ const ProfilePage: React.FC = () => {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   ]
 
-      const [expandedPosts, setExpandedPosts] = useState<boolean[]>(texts.map(() => false));
+  const [expandedPosts, setExpandedPosts] = useState<{[key: number]: boolean}>({});
 
-      const toggleExpand = (index: number) => {
-        const newExpanded = [...expandedPosts];
-        newExpanded[index] = !newExpanded[index];
-        setExpandedPosts(newExpanded);
-      };
-
+  const toggleExpand = (index: number) => {
+    setExpandedPosts(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-900 via-blue-900 to-blue-800">
@@ -33,13 +33,13 @@ const ProfilePage: React.FC = () => {
         {/* Left Main Section */}
         <div className="flex-1 p-6 rounded-2xl border border-blue-700/50 bg-blue-900/30 backdrop-blur-sm">
           <h1 className="text-white text-[24px] pb-10">Your Creations</h1>
-          <div className="grid grid-cols-3 gap-4">
-            {texts.map((t, idx) => (
+          <div className="grid grid-cols-3 gap-4 items-start">
+             {texts.map((text, idx) => (
               <UserPostModule 
-                  key={idx} 
-                  text={t} 
-                  expand={expandedPosts[idx]} 
-                  onToggle={() => toggleExpand(idx)}
+                key={idx} 
+                text={text} 
+                expand={!!expandedPosts[idx]}
+                onToggle={() => toggleExpand(idx)}
               />
             ))}
           </div>
