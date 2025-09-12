@@ -1,6 +1,8 @@
 from flask import Flask
-from .config import Config
 from .extensions import db, migrate, jwt, bcrypt
+from .controllers.auth_controller import auth_bp
+from .controllers.text_controller import text_bp
+from .config import Config
 
 def create_app():
     app = Flask(__name__)
@@ -13,10 +15,7 @@ def create_app():
     bcrypt.init_app(app)
 
     # Register blueprints
-    from .controllers.auth_controller import auth_bp
-    from .controllers.text_controller import text_bp
-
-    app.register_blueprint(auth_bp, url_prefix="/api/auth")
-    app.register_blueprint(text_bp, url_prefix="/api/text")
+    app.register_blueprint(auth_bp, url_prefix="/auth")
+    app.register_blueprint(text_bp, url_prefix="/text")
 
     return app

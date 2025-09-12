@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import jwt_required, get_jwt_identity
-from ..services.text_service import TextService
+from flask_jwt_extended import jwt_required
+from ..services.text_services import TextService  # fixed import
 
 text_bp = Blueprint("text_bp", __name__)
 
@@ -16,11 +16,9 @@ def generate_text_route():
         prompt = data.get("prompt", "The")
         length = int(data.get("length", 300))
 
-        # Keep old debug prints if you want
         print(f"Processing: prompt='{prompt}', length={length}")
 
-        # Call the same generate_text function
-        generated = TextService.generate(prompt)
+        generated = TextService.generate(prompt, length=length)
 
         return jsonify({"text": generated})
 
