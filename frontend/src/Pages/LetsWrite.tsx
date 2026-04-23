@@ -88,10 +88,17 @@ const LetsWrite = () => {
   }, [prompt]);
 
   return (
-    <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-slate-900 via-blue-900 to-blue-800">
+    <div className="min-h-screen flex flex-col transition-colors duration-300 bg-gradient-to-br from-slate-900 via-blue-900 to-blue-800">
+
      <Navbar/>
+
+        {/* MAIN CONTENT WRAPPER ADDED (THIS IS THE FIX) */}
+        <div className="flex-1 flex flex-col">
+        
         <div className="container mx-auto px-4 py-8 max-w-6xl">
-        {/* Header */}        <div className="flex items-center justify-between mb-8">
+        
+        {/* Header */}
+        <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-2xl bg-blue-600/20 border border-blue-400/40">
               <img 
@@ -140,9 +147,6 @@ const LetsWrite = () => {
                   value={wordCount}
                   onChange={(e) => setWordCount(parseInt(e.target.value))}
                   className="w-full h-3 rounded-lg appearance-none cursor-pointer bg-blue-800"
-                  style={{
-                    background: `linear-gradient(to right, #2563eb 0%, #2563eb ${(wordCount - 50) / (1000 - 50) * 100}%, #1e40af ${(wordCount - 50) / (1000 - 50) * 100}%, #1e40af 100%)`
-                  }}
                 />
               </div>
               <div>
@@ -160,52 +164,36 @@ const LetsWrite = () => {
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
           {/* Input Section */}
           <div className="p-6 rounded-2xl border bg-blue-900/30 border-blue-700/50 backdrop-blur-sm transition-all duration-300">
             <div className="flex items-center gap-2 mb-4">
               <FileText className="h-5 w-5 text-blue-400" />
               <h2 className="text-xl font-semibold text-white">Your Prompt</h2>
             </div>
-            
+
             <textarea
               ref={textareaRef}
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
-              placeholder="Enter your writing prompt here... What would you like me to help you write?"
-              className="w-full min-h-48 p-4 rounded-xl border resize-none bg-blue-950/50 border-blue-600 text-white placeholder-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 focus:outline-none transition-all duration-200"
+              className="w-full min-h-48 p-4 rounded-xl border resize-none bg-blue-950/50 border-blue-600 text-white"
+              placeholder="Enter your writing prompt here..."
             />
-            
+
             <div className="flex items-center justify-between mt-4">
               <span className="text-sm text-blue-400">{prompt.length} characters</span>
-              
+
               <div className="flex gap-2">
-                <button
-                  onClick={clearAll}
-                  className="px-4 py-2 rounded-lg bg-blue-800/50 hover:bg-blue-700/50 text-blue-300 hover:text-white transition-all duration-200"
-                >
-                  <RefreshCw className="h-4 w-4" />
+                <button onClick={clearAll} className="px-4 py-2 rounded-lg bg-blue-800/50 text-blue-300">
+                  Clear
                 </button>
-                
+
                 <button
                   onClick={handleGenerateText}
                   disabled={!prompt.trim() || isGenerating}
-                  className={`px-6 py-2 rounded-lg font-medium flex items-center gap-2 transition-all duration-200 ${
-                    !prompt.trim() || isGenerating
-                      ? 'bg-gray-400 cursor-not-allowed text-gray-200'
-                      : 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl transform hover:scale-105'
-                  }`}
+                  className="px-6 py-2 rounded-lg bg-blue-600 text-white"
                 >
-                  {isGenerating ? (
-                    <>
-                      <RefreshCw className="h-4 w-4 animate-spin" />
-                      Generating...
-                    </>
-                  ) : (
-                    <>
-                      <Send className="h-4 w-4" />
-                      Generate
-                    </>
-                  )}
+                  {isGenerating ? 'Generating...' : 'Generate'}
                 </button>
               </div>
             </div>
@@ -218,57 +206,27 @@ const LetsWrite = () => {
                 <Sparkles className="h-5 w-5 text-blue-400" />
                 <h2 className="text-xl font-semibold text-white">Generated Text</h2>
               </div>
-              
-              {generatedText && (
-                <div className="flex gap-2">
-                  <button
-                    onClick={copyToClipboard}
-                    className="p-2 rounded-lg bg-blue-800/50 hover:bg-blue-700/50 text-blue-300 hover:text-white transition-all duration-200"
-                    title="Copy to clipboard"
-                  >
-                    <Copy className="h-4 w-4" />
-                  </button>
-                  <button
-                    onClick={downloadText}
-                    className="p-2 rounded-lg bg-blue-800/50 hover:bg-blue-700/50 text-blue-300 hover:text-white transition-all duration-200"
-                    title="Download as text file"
-                  >
-                    <Download className="h-4 w-4" />
-                  </button>
-                </div>
-              )}
             </div>
-            
+
             <div className="min-h-48 p-4 rounded-xl border bg-blue-950/50 border-blue-600">
               {isGenerating ? (
-                <div className="flex items-center justify-center h-48">
-                  <div className="text-center">
-                    <RefreshCw className="h-8 w-8 animate-spin mx-auto mb-4 text-blue-400" />
-                    <p className="text-blue-300">Generating your text...</p>
-                  </div>
-                </div>
+                <div className="text-blue-300">Generating...</div>
               ) : generatedText ? (
-                <div className="whitespace-pre-wrap leading-relaxed text-blue-100">
+                <div className="whitespace-pre-wrap text-blue-100">
                   {generatedText}
                 </div>
               ) : (
-                <div className="flex items-center justify-center h-48">
-                  <p className="text-center text-blue-500">Your generated text will appear here...</p>
-                </div>
+                <div className="text-blue-500">Your generated text will appear here...</div>
               )}
             </div>
-            
-            {generatedText && (
-              <div className="mt-4 text-sm text-center">
-                <span className="text-blue-400">
-                  {generatedText.split(' ').length} words • {generatedText.length} characters
-                </span>
-              </div>
-            )}
           </div>
+
         </div>
-      </div>
-      <Footer/>
+        </div>
+        </div>
+
+      {/* FOOTER ALWAYS AT BOTTOM */}
+      <Footer />
     </div>
   );
 };
