@@ -4,6 +4,7 @@ import LetsWrite from "../Pages/LetsWrite";
 import LoginPage from "../Pages/LoginPage";
 import RegistrationPage from "../Pages/RegistrationPage";
 import ProfilePage from "../Pages/ProfilePage";
+import Chat from "../Pages/Chat";
 
 function AppRoutes() {
   return (
@@ -13,6 +14,7 @@ function AppRoutes() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/registration" element={<RegistrationPage />} />
       <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/chat" element={<Chat />} />
     </Routes>
   );
 }
