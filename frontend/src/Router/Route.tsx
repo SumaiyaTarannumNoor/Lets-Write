@@ -7,6 +7,7 @@ import ProfilePage from "../Pages/ProfilePage";
 import Chat from "../Pages/Chat";
 import AboutUs from "../Pages/AboutUs";
 import ContactUs from "../Pages/ContactUs";
+import FaqPage from "../Pages/FaqPage";
 
 function AppRoutes() {
   return (
@@ -19,6 +20,7 @@ function AppRoutes() {
       <Route path="/chat" element={<Chat />} />
       <Route path="/about-us" element={<AboutUs />} />
       <Route path="/contact-us" element={<ContactUs />} />
+      <Route path="/faq" element={<FaqPage />} />
     </Routes>
   );
 }

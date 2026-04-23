@@ -39,7 +39,7 @@ const Navbar = () => {
           </span>
           <span
             className="text-blue-300 hover:text-white transition-colors cursor-pointer"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/faq")}
           >
             FAQ
           </span>
