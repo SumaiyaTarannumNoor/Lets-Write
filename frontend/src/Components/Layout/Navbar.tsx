@@ -25,6 +25,24 @@ const Navbar = () => {
           >
             Home
           </span>
+          <span
+            className="text-blue-300 hover:text-white transition-colors cursor-pointer"
+            onClick={() => navigate("/about-us")}
+          >
+            About Us
+          </span>
+          <span
+            className="text-blue-300 hover:text-white transition-colors cursor-pointer"
+            onClick={() => navigate("/contact-us")}
+          >
+            Contact Us
+          </span>
+          <span
+            className="text-blue-300 hover:text-white transition-colors cursor-pointer"
+            onClick={() => navigate("/")}
+          >
+            FAQ
+          </span>
         </div>
 
         {/* Right Actions */}
