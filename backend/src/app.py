@@ -57,7 +57,7 @@ def generate():
         print("Error:", str(e))  # Debug
         return jsonify({"error": str(e)}), 500
 
-@app.route("/chat", methods=["POST"])
+@app.route("/api/chat", methods=["POST"])
 def chat():
     data = request.get_json()
 
@@ -69,6 +69,7 @@ def chat():
     return jsonify({
         "response": response_text
     })
+
 
 if __name__ == "__main__":
     app.run(debug=True)

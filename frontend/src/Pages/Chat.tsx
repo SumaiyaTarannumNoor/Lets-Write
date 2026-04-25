@@ -1,22 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, RefreshCw, Sparkles, User, Bot } from 'lucide-react';
+import { Send, RefreshCw, User, Bot } from 'lucide-react';
 import Navbar from '../Components/Layout/Navbar';
 import Footer from '../Components/Layout/Footer';
+import { chat } from '../../api/chat';
 
-const sendMessage = async (message: string): Promise<string> => {
-  const API_URL = 'http://localhost:5000/api/chat';
-
-  const response = await fetch(API_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message }),
-  });
-
-  if (!response.ok) throw new Error('API Error');
-
-  const data = await response.json();
-  return data.reply;
-};
 
 type Message = {
   role: 'user' | 'bot';
@@ -41,18 +28,30 @@ const Chat = () => {
   const handleSend = async () => {
     if (!input.trim()) return;
 
-    const userMsg: Message = { role: 'user', content: input };
-    setMessages((prev) => [...prev, userMsg]);
+    const userMessage: Message = {
+      role: 'user',
+      content: input,
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
     setInput('');
     setLoading(true);
 
     try {
-      const reply = await sendMessage(userMsg.content);
-      setMessages((prev) => [...prev, { role: 'bot', content: reply }]);
+      const reply = await chat(userMessage.content);
+
+      setMessages((prev) => [
+        ...prev,
+        { role: 'bot', content: reply },
+      ]);
     } catch {
       setMessages((prev) => [
         ...prev,
-        { role: 'bot', content: 'Server error. Try again.' },
+        {
+          role: 'bot',
+          content:
+            'Sorry dear friend 😔 something went wrong. Please try again.',
+        },
       ]);
     } finally {
       setLoading(false);
@@ -81,10 +80,11 @@ const Chat = () => {
               <div
                 key={i}
                 className={`flex items-start gap-3 ${
-                  msg.role === 'user' ? 'justify-end' : 'justify-start'
+                  msg.role === 'user'
+                    ? 'justify-end'
+                    : 'justify-start'
                 }`}
               >
-
                 {msg.role === 'bot' && (
                   <div className="p-2 rounded-full bg-blue-900 border border-blue-700">
                     <Bot className="text-blue-300 w-4 h-4" />
@@ -106,7 +106,6 @@ const Chat = () => {
                     <User className="text-white w-4 h-4" />
                   </div>
                 )}
-
               </div>
             ))}
 
@@ -121,14 +120,16 @@ const Chat = () => {
           </div>
         </div>
 
-        {/* INPUT BAR (sticky chat style) */}
+        {/* INPUT BAR */}
         <div className="sticky bottom-0 border-t border-blue-700 bg-blue-950/40 backdrop-blur-md">
           <div className="max-w-3xl mx-auto flex items-center gap-3 p-4">
 
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+              onKeyDown={(e) =>
+                e.key === 'Enter' && handleSend()
+              }
               placeholder="Message AI..."
               className="flex-1 bg-blue-900/40 text-white px-4 py-3 rounded-xl outline-none border border-blue-700"
             />
