@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Send, RefreshCw, User, Bot } from 'lucide-react';
 import Navbar from '../Components/Layout/Navbar';
 import Footer from '../Components/Layout/Footer';
-import { chat } from '../../api/chat';
+import { chatGemini } from '../../api/chatGemini';
 
 
 type Message = {
@@ -38,7 +38,7 @@ const Chat = () => {
     setLoading(true);
 
     try {
-      const reply = await chat(userMessage.content);
+      const reply = await chatGemini(userMessage.content);
 
       setMessages((prev) => [
         ...prev,

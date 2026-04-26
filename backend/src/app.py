@@ -57,7 +57,7 @@ def generate():
         print("Error:", str(e))  # Debug
         return jsonify({"error": str(e)}), 500
 
-@app.route("/api/chat", methods=["POST"])
+@app.route("/api/chat-gemini", methods=["POST"])
 def chat():
     data = request.get_json()
 

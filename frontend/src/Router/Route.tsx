@@ -4,7 +4,7 @@ import LetsWrite from "../Pages/LetsWrite";
 import LoginPage from "../Pages/LoginPage";
 import RegistrationPage from "../Pages/RegistrationPage";
 import ProfilePage from "../Pages/ProfilePage";
-import Chat from "../Pages/Chat";
+import Chat from "../Pages/ChatGemini";
 import AboutUs from "../Pages/AboutUs";
 import ContactUs from "../Pages/ContactUs";
 import FaqPage from "../Pages/FaqPage";
@@ -17,7 +17,7 @@ function AppRoutes() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/registration" element={<RegistrationPage />} />
       <Route path="/profile" element={<ProfilePage />} />
-      <Route path="/chat" element={<Chat />} />
+      <Route path="/chat-gemini" element={<Chat />} />
       <Route path="/about-us" element={<AboutUs />} />
       <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/faq" element={<FaqPage />} />

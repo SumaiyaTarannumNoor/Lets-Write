@@ -1,6 +1,6 @@
-const API_URL = 'http://localhost:5000/api/chat';
+const API_URL = 'http://localhost:5000/api/chat-gemini';
 
-export const chat = async (prompt: string): Promise<string> => {
+export const chatGemini = async (prompt: string): Promise<string> => {
   const response = await fetch(API_URL, {
     method: 'POST',
     headers: {
