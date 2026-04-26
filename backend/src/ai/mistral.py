@@ -1,17 +1,40 @@
-import google.generativeai as genai
+# This code will only work for mistralai <= 1.12.4, as for the later versions the SDK codes are updated but they conflict with client packages.
+from mistralai import Mistral as MistralClient
 from .base import AIPlatform
 
 class Mistral(AIPlatform):
-    def __init__(self, api_key: str, system_prompt: str = None):
+    def __init__(self, api_key: str, system_prompt_mistral_mistral_mistral_mistral: str = None):
+        """
+        Initializes the Mistral AI platform.
+        Using MistralClient alias to avoid naming conflicts with the class.
+        """
         self.api_key = api_key
-        self.system_prompt = system_prompt
-        genai.configure(api_key=self.api_key)
-
-        self.model = genai.GenerativeModel("mistral-medium-latest")
+        self.system_prompt_mistral_mistral_mistral_mistral = system_prompt_mistral_mistral_mistral_mistral
+        self.client = MistralClient(api_key=api_key)
 
     def chat(self, prompt: str) -> str:
-        if self.system_prompt:
-            prompt = f"{self.system_prompt}\n\n{prompt}"
+        """
+        Sends a prompt to Mistral and returns the response content.
+        """
+        messages = []
+        
+        # Add system prompt if provided
+        if self.system_prompt_mistral_mistral_mistral_mistral:
+            messages.append({"role": "system", "content": self.system_prompt_mistral_mistral_mistral_mistral})
+        
+        # Add user prompt
+        messages.append({"role": "user", "content": prompt})
 
-        response = self.model.generate_content(prompt)
-        return response.text        
+        try:
+            # Use .chat.complete() to avoid 'Chat object is not callable' error
+            response = self.client.chat.complete(
+                model="mistral-small-latest",
+                messages=messages
+            )
+
+            # Access the content from the first choice
+            return response.choices[0].message.content
+            
+        except Exception as e:
+            print(f"Mistral API Error: {str(e)}")
+            return f"Error: Could not get response from Mistral. {str(e)}"
