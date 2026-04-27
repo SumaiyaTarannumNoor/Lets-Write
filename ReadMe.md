@@ -10,3 +10,17 @@
 - Create .env file
 - Write "GEMINI_API_KEY="YOUR COPIED KEY"
 - Save the file
+
+## Getting Mistral API Key
+- Go to https://console.mistral.ai/home
+- Click on "API Keys" on the left sidebar
+- Click on "+ Add a new key"
+- Name the key 
+- Click "Create new key"
+
+## Using Mistral API Key
+- Copy the key
+- Go to backend folder
+- Create .env file
+- Write "MISTRAL_API_KEY="YOUR COPIED KEY"
+- Save the file
