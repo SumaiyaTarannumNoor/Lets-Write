@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Send, RefreshCw, User, Bot } from 'lucide-react';
 import Navbar from '../Components/Layout/Navbar';
 import Footer from '../Components/Layout/Footer';
-import { chatGemini } from '../../api/chatGemini';
+import { chatMistral } from '../../api/chatMistral';
 
 
 type Message = {
@@ -10,7 +10,7 @@ type Message = {
   content: string;
 };
 
-const ChatGemini = () => {
+const ChatMistral = () => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
@@ -38,7 +38,7 @@ const ChatGemini = () => {
     setLoading(true);
 
     try {
-      const reply = await chatGemini(userMessage.content);
+      const reply = await chatMistral(userMessage.content);
 
       setMessages((prev) => [
         ...prev,
@@ -152,4 +152,4 @@ const ChatGemini = () => {
   );
 };
 
-export default ChatGemini;
+export default ChatMistral;
