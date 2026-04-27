@@ -8,7 +8,7 @@
 - Copy the key
 - Go to backend folder
 - Create .env file
-- Write "GEMINI_API_KEY="YOUR COPIED KEY"
+- Write "GEMINI_API_KEY="YOUR COPIED KEY""
 - Save the file
 
 ## Getting Mistral API Key
@@ -22,5 +22,5 @@
 - Copy the key
 - Go to backend folder
 - Create .env file
-- Write "MISTRAL_API_KEY="YOUR COPIED KEY"
+- Write "MISTRAL_API_KEY="YOUR COPIED KEY""
 - Save the file
