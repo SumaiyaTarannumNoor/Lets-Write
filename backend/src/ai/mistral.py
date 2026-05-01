@@ -3,13 +3,13 @@ from mistralai import Mistral as MistralClient
 from .base import AIPlatform
 
 class Mistral(AIPlatform):
-    def __init__(self, api_key: str, system_prompt_mistral_mistral_mistral_mistral: str = None):
+    def __init__(self, api_key: str, system_prompt_mistral: str = None):
         """
         Initializes the Mistral AI platform.
         Using MistralClient alias to avoid naming conflicts with the class.
         """
         self.api_key = api_key
-        self.system_prompt_mistral_mistral_mistral_mistral = system_prompt_mistral_mistral_mistral_mistral
+        self.system_prompt_mistral = system_prompt_mistral
         self.client = MistralClient(api_key=api_key)
 
     def chat(self, prompt: str) -> str:
@@ -19,8 +19,8 @@ class Mistral(AIPlatform):
         messages = []
         
         # Add system prompt if provided
-        if self.system_prompt_mistral_mistral_mistral_mistral:
-            messages.append({"role": "system", "content": self.system_prompt_mistral_mistral_mistral_mistral})
+        if self.system_prompt_mistral:
+            messages.append({"role": "system", "content": self.system_prompt_mistral})
         
         # Add user prompt
         messages.append({"role": "user", "content": prompt})

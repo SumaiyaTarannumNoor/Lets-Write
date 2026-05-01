@@ -1,11 +1,11 @@
-from groq import Groq
+from groq import Groq as GroqClient
 from .base import AIPlatform
 
-class GroqAI(AIPlatform):
-    def __init__(self, api_key:str, system_prompt_goq: str = None):
+class Groq(AIPlatform):
+    def __init__(self, api_key:str, system_prompt_groq: str = None):
         self.api_key = api_key
-        self.system_prompt_groq = self.system_prompt_groq
-        self.client = Groq(api_key=self.api_key)
+        self.system_prompt_groq = system_prompt_groq
+        self.client = GroqClient(api_key=self.api_key)
 
         self.model_name = "llama-3.3-70b-versatile"
 
@@ -18,7 +18,7 @@ class GroqAI(AIPlatform):
                 "content": self.system_prompt_groq
             })   
 
-        messages,append({
+        messages.append({
             "role": "user",
             "content": prompt
         })
@@ -29,7 +29,7 @@ class GroqAI(AIPlatform):
                 messages=messages 
             )
 
-            return response.choices[0].message.content.srip()
+            return response.choices[0].message.content.strip()
         
         except Exception as e:
             return f"Groq Error: {str(e)}"

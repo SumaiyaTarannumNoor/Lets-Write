@@ -4,6 +4,7 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 from ai.gemini import Gemini
 from ai.mistral import Mistral
+from ai.groq import Groq
 
 load_dotenv()
 
@@ -23,13 +24,15 @@ def load_prompt(filename):
 # --- Load Separate Prompts ---
 system_prompt_gemini = load_prompt("system_prompt_gemini.md")
 system_prompt_mistral = load_prompt("system_prompt_mistral.md")
+system_prompt_groq = load_prompt("system_prompt_groq.md")
 
 # --- API Key Loading ---
 gemini_api_key = os.getenv("GEMINI_API_KEY")
 mistral_api_key = os.getenv("MISTRAL_API_KEY")
+groq_api_key = os.getenv("GROQ_API_KEY")
 
-if not gemini_api_key or not mistral_api_key:
-    raise ValueError("API keys for Gemini or Mistral are missing in .env")
+if not gemini_api_key or not mistral_api_key or not groq_api_key:
+    raise ValueError("API keys for Gemini or Mistral or Groq are missing in .env")
 
 
 gemini_platform = Gemini(
@@ -38,7 +41,11 @@ gemini_platform = Gemini(
 )
 mistral_platform = Mistral(
     api_key=mistral_api_key, 
-    system_prompt_mistral_mistral_mistral_mistral=system_prompt_mistral
+    system_prompt_mistral=system_prompt_mistral
+)
+groq_platform = Groq(
+    api_key=groq_api_key, 
+    system_prompt_groq=system_prompt_groq
 )
 
 
@@ -74,6 +81,13 @@ def chat_mistral():
     if not data or "prompt" not in data:
         return jsonify({"error": "prompt is required"}), 400
     return jsonify({"response": mistral_platform.chat(data["prompt"])})
+
+@app.route("/api/chat-groq", methods=["POST"])
+def chat_groq():
+    data = request.get_json()
+    if not data or "prompt" not in data:
+        return jsonify({"error": "prompt is required"}), 400
+    return jsonify({"response": groq_platform.chat(data["prompt"])})
 
 if __name__ == "__main__":
     app.run(debug=True)
