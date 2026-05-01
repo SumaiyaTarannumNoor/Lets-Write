@@ -4,3 +4,4 @@ flask-cors
 pydantic
 google-genai
 mistralai==1.12.4
+groq
