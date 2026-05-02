@@ -1,6 +1,6 @@
 const API_URL = 'http://localhost:5000/api/chat-groq';
 
-export const chatMistral = async (prompt: string): Promise<string> => {
+export const chatGroq = async (prompt: string): Promise<string> => {
   const response = await fetch(API_URL, {
     method: 'POST',
     headers: {

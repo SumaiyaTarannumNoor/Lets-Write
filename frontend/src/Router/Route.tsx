@@ -9,6 +9,7 @@ import AboutUs from "../Pages/AboutUs";
 import ContactUs from "../Pages/ContactUs";
 import FaqPage from "../Pages/FaqPage";
 import ChatMistral from "../Pages/ChatMistral";
+import ChatGroq from "../Pages/ChatGoq";
 
 function AppRoutes() {
   return (
@@ -20,6 +21,7 @@ function AppRoutes() {
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/chat-gemini" element={<ChatGemini />} />
       <Route path="/chat-mistral" element={<ChatMistral />} />
+      <Route path="/chat-groq" element={<ChatGroq />} />
       <Route path="/about-us" element={<AboutUs />} />
       <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/faq" element={<FaqPage />} />
