@@ -485,6 +485,14 @@ const ChatGemini = () => {
               Chat with Mistral
             </button>
 
+            <button
+              onClick={() => (window.location.href = '/chat-groq')}
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-900 font-medium bg-gradient-to-r from-[#80ed99] via-[#57cc99] to-[#38b000] hover:opacity-90 transition"
+            >
+              <MessageSquarePlus className="w-4 h-4" />
+              Chat with Groq
+            </button>
+
             <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-900/40 hover:bg-blue-800/50 text-blue-200">
               <MessageSquarePlus className="w-4 h-4" />
               New Chat
@@ -518,23 +526,37 @@ const ChatGemini = () => {
               )}
 
               {messages.map((msg, i) => (
-                <div
-                  key={i}
-                  className={`flex items-start gap-3 ${
-                    msg.role === 'user' ? 'justify-end' : 'justify-start'
-                  }`}
-                >
                   <div
-                    className={`px-4 py-3 rounded-2xl max-w-[75%] whitespace-pre-wrap text-sm leading-relaxed ${
+                    key={i}
+                    className={`flex items-start gap-3 ${
                       msg.role === 'user'
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-blue-950/60 text-blue-100 border border-blue-700'
+                        ? 'justify-end'
+                        : 'justify-start'
                     }`}
                   >
-                    {msg.content}
+                    {msg.role === 'bot' && (
+                      <div className="p-2 rounded-full bg-blue-900 border border-blue-700">
+                        <Bot className="text-blue-300 w-4 h-4" />
+                      </div>
+                    )}
+
+                    <div
+                      className={`px-4 py-3 rounded-2xl max-w-[75%] whitespace-pre-wrap text-sm leading-relaxed ${
+                        msg.role === 'user'
+                          ? 'bg-blue-600 text-white rounded-br-none'
+                          : 'bg-blue-950/60 text-blue-100 border border-blue-700 rounded-bl-none'
+                      }`}
+                    >
+                      {msg.content}
+                    </div>
+
+                    {msg.role === 'user' && (
+                      <div className="p-2 rounded-full bg-blue-600">
+                        <User className="text-white w-4 h-4" />
+                      </div>
+                    )}
                   </div>
-                </div>
-              ))}
+                ))}
 
               {loading && (
                 <div className="flex items-center gap-2 text-blue-300">

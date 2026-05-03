@@ -4,6 +4,8 @@ import letsWrite from '../assets/letsWrite.png'
 import Navbar from '../Components/Layout/Navbar';
 import Footer from '../Components/Layout/Footer';
 
+import '../../styles/LetsWrite.css';
+
 // API function to connect to your Flask backend
 const generateText = async (prompt: string, length: number): Promise<string> => {
   const API_URL = 'http://localhost:5000/api/generate';
@@ -88,7 +90,8 @@ const LetsWrite = () => {
   }, [prompt]);
 
   return (
-    <div className="min-h-screen flex flex-col transition-colors duration-300 bg-gradient-to-br from-slate-900 via-blue-900 to-blue-800">
+    // <div className="letswrite-bg min-h-screen flex flex-col transition-colors duration-300 bg-gradient-to-br from-slate-900 via-blue-900 to-blue-800">
+    <div className="letswrite-bg min-h-screen flex flex-col transition-colors duration-300">
 
      <Navbar/>
 

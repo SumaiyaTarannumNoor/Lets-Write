@@ -1,0 +1,112 @@
+/* .letswrite-bg {
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.85), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.9), transparent),
+    radial-gradient(2px 2px at 50px 160px, rgba(255,255,255,0.75), transparent),
+    linear-gradient(to bottom right, #0f172a, #1e3a8a, #1e40af);
+
+  background-repeat: repeat;
+  background-size:
+    200px 200px,
+    200px 200px,
+    200px 200px,
+    cover;
+
+  animation: move-pixels 100s linear infinite;
+}
+
+@keyframes move-pixels {
+  from {
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      center;
+  }
+
+  to {
+    background-position:
+      1000px 500px,
+      800px 400px,
+      600px 300px,
+      center;
+  }
+} */
+
+.letswrite-bg {
+  /* 1. Added a dark horizon gradient to your sky */
+  background-color: #0f172a;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.85), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.9), transparent),
+    radial-gradient(2px 2px at 50px 160px, rgba(255,255,255,0.75), transparent),
+    linear-gradient(to bottom, #0f172a 0%, #1e3a8a 50%, #701a75 100%); /* Horizon tint */
+
+  background-repeat: repeat, repeat, repeat, no-repeat;
+  background-size: 200px 200px, 200px 200px, 200px 200px, cover;
+  animation: move-pixels 100s linear infinite;
+  
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+/* 2. The "Outrun" Sun */
+.letswrite-bg::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(to bottom, #ff00ff, #ff8000 80%);
+  border-radius: 50%;
+  box-shadow: 0 0 50px #ff00ff;
+  /* Sun stripes effect */
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 75%, black 80%, transparent 85%, black 90%, transparent 95%, black 100%);
+}
+
+/* 3. The Neon Grid (Road) */
+.grid-floor {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40%;
+  background-image: 
+    linear-gradient(rgba(0, 255, 255, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.3) 1px, transparent 1px);
+  background-size: 60px 60px;
+  transform: perspective(300px) rotateX(60deg);
+  animation: move-grid 2s linear infinite;
+}
+
+/* 4. The Pixel Car Placeholder (CSS only) */
+.pixel-car {
+  position: absolute;
+  bottom: 15%;
+  width: 100px;
+  height: 40px;
+  background: #ff0055; /* Replace with a car PNG/GIF for better look */
+  border-radius: 5px 20px 0 0;
+  box-shadow: 0 10px 20px rgba(255, 0, 255, 0.5), inset -10px -5px 0px #900;
+  animation: car-bounce 0.4s infinite alternate ease-in-out;
+}
+
+/* --- Animations --- */
+
+@keyframes move-pixels {
+  from { background-position: 0 0, 0 0, 0 0, center; }
+  to { background-position: 1000px 500px, 800px 400px, 600px 300px, center; }
+}
+
+@keyframes move-grid {
+  from { background-position: 0 0; }
+  to { background-position: 0 60px; }
+}
+
+@keyframes car-bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-4px); }
+}

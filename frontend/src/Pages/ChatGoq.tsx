@@ -167,10 +167,10 @@ const ChatGroq = () => {
       <Navbar />
 
       <div className="flex flex-1 overflow-hidden">
-        <aside className="w-72 border-r border-green-700 bg-slate-950/70 backdrop-blur-md flex flex-col">
+        <aside className="w-72 border-r border-blue-800 bg-slate-950/70 backdrop-blur-md flex flex-col">
 
           {/* HEADER */}
-          <div className="p-6 border-b border-green-700">
+          <div className="p-6 border-b border-blue-800">
             <h1
               className="text-5xl tracking-wider bg-gradient-to-r from-[#80ED99] via-[#57CC99] to-[#38A169] bg-clip-text text-transparent drop-shadow-lg"
               style={{
@@ -204,9 +204,9 @@ const ChatGroq = () => {
           </div>
 
           {/* MUSIC */}
-          <div className="p-3 border-b border-green-700">
+          <div className="p-3 border-b border-blue-800">
             <div className="flex items-center justify-between mb-2">
-              <p className="text-xs text-green-300">LoFi Music</p>
+              <p className="text-xs text-blue-300">LoFi Music</p>
 
               <button onClick={() => setOpenMusic(!openMusic)}>
                 <ChevronDown className="w-4 h-4 text-green-300" />
@@ -281,17 +281,25 @@ const ChatGroq = () => {
               Chat with Gemini
             </button>
 
-            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-green-900/30 hover:bg-green-800/40 text-green-200">
+            <button
+              onClick={() => (window.location.href = '/chat-mistral')}
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-white font-medium bg-gradient-to-r from-[#ffba08] via-[#ffa200] to-[#ff4800] hover:opacity-90 transition"
+            >
+              <MessageSquarePlus className="w-4 h-4" />
+              Chat with Mistral
+            </button>
+
+            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-900/40 hover:bg-blue-800/50 text-blue-200">
               <MessageSquarePlus className="w-4 h-4" />
               New Chat
             </button>
 
-            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-green-900/20 text-green-300">
+            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-900/30 text-blue-300">
               <History className="w-4 h-4" />
               History
             </button>
 
-            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-green-900/20 text-green-300">
+            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-900/30 text-blue-300">
               <Settings className="w-4 h-4" />
               Settings
             </button>
@@ -303,46 +311,46 @@ const ChatGroq = () => {
           <div className="flex-1 overflow-y-auto px-6 py-6">
             <div className="max-w-4xl mx-auto space-y-4">
               {messages.length === 0 && (
-                <div className="text-center text-green-300 mt-20">
+                <div className="text-center text-blue-300 mt-20">
                   Start chatting with Groq...
                 </div>
               )}
 
               {messages.map((msg, i) => (
+              <div
+                key={i}
+                className={`flex items-start gap-3 ${
+                  msg.role === 'user'
+                    ? 'justify-end'
+                    : 'justify-start'
+                }`}
+              >
+                {msg.role === 'bot' && (
+                  <div className="p-2 rounded-full bg-blue-900 border border-blue-700">
+                    <Bot className="text-blue-300 w-4 h-4" />
+                  </div>
+                )}
+
                 <div
-                  key={i}
-                  className={`flex items-start gap-3 ${
+                  className={`px-4 py-3 rounded-2xl max-w-[75%] whitespace-pre-wrap text-sm leading-relaxed ${
                     msg.role === 'user'
-                      ? 'justify-end'
-                      : 'justify-start'
+                      ? 'bg-blue-600 text-white rounded-br-none'
+                      : 'bg-blue-950/60 text-blue-100 border border-blue-700 rounded-bl-none'
                   }`}
                 >
-                  {msg.role === 'bot' && (
-                    <div className="p-2 rounded-full bg-green-900 border border-green-700">
-                      <Bot className="text-green-300 w-4 h-4" />
-                    </div>
-                  )}
-
-                  <div
-                    className={`px-4 py-3 rounded-2xl max-w-[75%] whitespace-pre-wrap text-sm leading-relaxed ${
-                      msg.role === 'user'
-                        ? 'bg-green-600 text-white rounded-br-none'
-                        : 'bg-green-950/40 text-green-100 border border-green-700 rounded-bl-none'
-                    }`}
-                  >
-                    {msg.content}
-                  </div>
-
-                  {msg.role === 'user' && (
-                    <div className="p-2 rounded-full bg-green-600">
-                      <User className="text-white w-4 h-4" />
-                    </div>
-                  )}
+                  {msg.content}
                 </div>
-              ))}
+
+                {msg.role === 'user' && (
+                  <div className="p-2 rounded-full bg-blue-600">
+                    <User className="text-white w-4 h-4" />
+                  </div>
+                )}
+              </div>
+            ))}
 
               {loading && (
-                <div className="flex items-center gap-2 text-green-300">
+                <div className="flex items-center gap-2 text-blue-300">
                   <RefreshCw className="animate-spin w-4 h-4" />
                   Thinking...
                 </div>
@@ -352,27 +360,29 @@ const ChatGroq = () => {
             </div>
           </div>
 
-          {/* INPUT */}
-          <div className="border-t border-green-700 bg-green-950/20 backdrop-blur-md">
+          {/* INPUT (UNCHANGED) */}
+          <div className="border-t border-blue-700 bg-blue-950/40 backdrop-blur-md">
+
             <div className="max-w-4xl mx-auto flex items-center gap-3 p-4">
+
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) =>
-                  e.key === 'Enter' && handleSend()
-                }
+                onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                 placeholder="Message Groq..."
-                className="flex-1 bg-green-900/20 text-white px-4 py-3 rounded-xl outline-none border border-green-700"
+                className="flex-1 bg-blue-900/40 text-white px-4 py-3 rounded-xl outline-none border border-blue-700"
               />
 
               <button
                 onClick={handleSend}
                 disabled={!input.trim() || loading}
-                className="p-3 rounded-xl bg-green-600 hover:bg-green-700 text-white disabled:opacity-50"
+                className="p-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50"
               >
                 <Send className="w-4 h-4" />
               </button>
+
             </div>
+
           </div>
         </div>
       </div>

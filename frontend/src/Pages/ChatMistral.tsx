@@ -271,6 +271,15 @@ const ChatMistral = () => {
             <MessageSquarePlus className="w-4 h-4" />
             Chat with Gemini
             </button>
+
+            <button
+              onClick={() => (window.location.href = '/chat-groq')}
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-900 font-medium bg-gradient-to-r from-[#80ed99] via-[#57cc99] to-[#38b000] hover:opacity-90 transition"
+            >
+              <MessageSquarePlus className="w-4 h-4" />
+              Chat with Groq
+            </button>
+
             <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-blue-900/40 hover:bg-blue-800/50 text-blue-200">
               <MessageSquarePlus className="w-4 h-4" />
               New Chat
