@@ -24,3 +24,16 @@
 - Create .env file
 - Write "MISTRAL_API_KEY="YOUR COPIED KEY""
 - Save the file
+
+## Getting Groq API Key
+- Go to https://console.groq.com/keys
+- Click on "+ Create API Key"
+- Name the key 
+- Click "Submit"
+
+## Using Mistral API Key
+- Copy the key
+- Go to backend folder
+- Create .env file
+- Write "GROQ_API_KEY="YOUR COPIED KEY""
+- Save the file
