@@ -9,7 +9,7 @@ class Gemini(AIPlatform):
 
         self.client = genai.Client(api_key=self.api_key)
 
-        self.model_name = "gemini-3.1-pro-preview"
+        self.model_name = "gemini-2.5-flash"
 
     def chat(self, prompt: str) -> str:
         if self.system_prompt_gemini:
