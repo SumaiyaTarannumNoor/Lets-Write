@@ -6,7 +6,7 @@ from ai.gemini import Gemini
 from ai.mistral import Mistral
 from ai.groq import Groq
 from flask_jwt_extended import JWTManager
-
+from auth.routes import auth_bp
 load_dotenv()
 
 app = Flask(__name__)
@@ -91,6 +91,10 @@ def chat_groq():
     if not data or "prompt" not in data:
         return jsonify({"error": "prompt is required"}), 400
     return jsonify({"response": groq_platform.chat(data["prompt"])})
+
+app.register_blueprint(auth_bp, url_prefix="/auth")
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
