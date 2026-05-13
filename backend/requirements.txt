@@ -5,3 +5,8 @@ pydantic
 google-genai
 mistralai==1.12.4
 groq
+python-dotenv 
+psycopg2-binary 
+pyjwt 
+bcrypt 
+email-validator
