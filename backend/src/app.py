@@ -92,7 +92,7 @@ def chat_groq():
         return jsonify({"error": "prompt is required"}), 400
     return jsonify({"response": groq_platform.chat(data["prompt"])})
 
-app.register_blueprint(auth_bp, url_prefix="/auth")
+app.register_blueprint(auth_bp, url_prefix="/api/auth")
 
 
 

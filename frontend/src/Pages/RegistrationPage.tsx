@@ -4,16 +4,17 @@ import letsWrite from "../assets/letsWrite.png";
 import Navbar from "../Components/Layout/Navbar";
 import Footer from "../Components/Layout/Footer";
 import countryList from "react-select-country-list";
-import Select from "react-select";
-import PhoneInput from "react-phone-input-2";
+// import Select from "react-select";
+// import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { registerUser } from "../../api/registration";
 
 
 const RegistrationPage: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [country, setCountry] = useState("");
+  // const [phone, setPhone] = useState("");
+  // const [country, setCountry] = useState("");
   const [password, setPassword] = useState("");
 
   const options = useMemo (() => countryList().getData(), [])
@@ -22,11 +23,32 @@ const RegistrationPage: React.FC = () => {
     setCountry(value);
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Registration info:", { name, email, phone, country, password });
-    // TODO: Hook this to your Flask registration route
-  };
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    const response = await registerUser({
+      name,
+      email,
+      password,
+    });
+
+    console.log("Registration successful:", response);
+
+    alert("Registration successful!");
+
+    // Clear form
+    setName("");
+    setEmail("");
+    setPassword("");
+
+    window.location.href = "/login";
+
+  } catch (error: any) {
+    console.error(error);
+    alert(error.message || "Registration failed");
+  }
+};
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-900 via-blue-900 to-blue-800">
@@ -87,7 +109,7 @@ const RegistrationPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Phone */}
+            {/* //Phone 
             <div>
               <label className="block text-sm font-medium text-blue-300 mb-2">
                 Phone Number
@@ -101,9 +123,9 @@ const RegistrationPage: React.FC = () => {
                     buttonClass= "!rounded-l-lg"
                 />
               </div>
-            </div>
+            </div>  */}
 
-            {/* Country */}
+            {/* //Country
             <div>
               <label className="block text-sm font-medium text-blue-300 mb-2">
                 Country
@@ -113,7 +135,7 @@ const RegistrationPage: React.FC = () => {
                 <Select options={options} value={country} onChange = {handleChange} 
                 styles={{control: (base) => ({...base, color:"gray"}) }}/>
               </div>
-            </div>
+            </div> */}
 
             {/* Password */}
             <div>
