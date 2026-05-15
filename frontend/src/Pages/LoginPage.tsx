@@ -4,27 +4,64 @@ import letsWrite from "../assets/letsWrite.png";
 import Navbar from "../Components/Layout/Navbar";
 import Footer from "../Components/Layout/Footer";
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../../api/login";
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Login info:", { email, password });
-    // TODO: Hook this to your Flask login route
+
+    try {
+      setError("");
+      setLoading(true);
+
+      const response = await loginUser({
+        email,
+        password,
+      });
+
+      console.log("Login response:", response);
+
+      // store token safely
+      if (response?.token) {
+        localStorage.setItem("token", response.token);
+        console.log("JWT stored:", response.token);
+      } else {
+        throw new Error("Token not received from server");
+      }
+
+      // clear form
+      setEmail("");
+      setPassword("");
+
+      //redirect user after login
+      navigate("/lets-write-user");
+
+    } catch (error: any) {
+      console.error("Login error:", error);
+      setError(error.message || "Login failed");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-900 via-blue-900 to-blue-800">
+      
       {/* Navbar */}
       <Navbar />
 
       {/* Main Login Section */}
       <main className="flex-grow flex items-center justify-center px-4">
+
         <div className="w-full max-w-md p-8 rounded-2xl shadow-xl border border-blue-700/50 bg-blue-900/30 backdrop-blur-sm">
+
           {/* Logo + Title */}
           <div className="flex flex-col items-center mb-8">
             <div className="p-2 rounded-2xl bg-blue-600/20 border border-blue-400/40">
@@ -34,19 +71,33 @@ const LoginPage: React.FC = () => {
                 className="h-16 w-16 object-contain"
               />
             </div>
-            <h1 className="mt-4 text-3xl font-bold text-white">Welcome Back</h1>
+
+            <h1 className="mt-4 text-3xl font-bold text-white">
+              Welcome Back
+            </h1>
+
             <p className="text-blue-300">Login to continue</p>
           </div>
 
+          {/* Error message */}
+          {error && (
+            <div className="mb-4 text-red-400 text-sm text-center">
+              {error}
+            </div>
+          )}
+
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
+
             {/* Email */}
             <div>
               <label className="block text-sm font-medium text-blue-300 mb-2">
                 Email Address
               </label>
+
               <div className="relative">
                 <Mail className="absolute left-3 top-3 h-5 w-5 text-blue-500" />
+
                 <input
                   type="email"
                   value={email}
@@ -63,8 +114,10 @@ const LoginPage: React.FC = () => {
               <label className="block text-sm font-medium text-blue-300 mb-2">
                 Password
               </label>
+
               <div className="relative">
                 <Lock className="absolute left-3 top-3 h-5 w-5 text-blue-500" />
+
                 <input
                   type="password"
                   value={password}
@@ -79,11 +132,13 @@ const LoginPage: React.FC = () => {
             {/* Submit */}
             <button
               type="submit"
-              className="w-full py-3 px-4 rounded-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center gap-2"
+              disabled={loading}
+              className="w-full py-3 px-4 rounded-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50"
             >
-              <LogIn className="h-5 w-5" onClick={()=>navigate("/profile")}/>
-              Login
+              <LogIn className="h-5 w-5" />
+              {loading ? "Logging in..." : "Login"}
             </button>
+
           </form>
 
           {/* Sign Up Link */}
@@ -96,7 +151,9 @@ const LoginPage: React.FC = () => {
               Sign up
             </a>
           </p>
+
         </div>
+
       </main>
 
       {/* Footer */}

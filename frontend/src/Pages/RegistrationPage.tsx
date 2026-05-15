@@ -19,9 +19,9 @@ const RegistrationPage: React.FC = () => {
 
   const options = useMemo (() => countryList().getData(), [])
 
-  const handleChange = (value: any) => {
-    setCountry(value);
-  }
+  // const handleChange = (value: any) => {
+  //   setCountry(value);
+  // }
 
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();

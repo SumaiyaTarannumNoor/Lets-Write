@@ -16,6 +16,7 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<LetsWrite />} />
       <Route path="/lets-write" element={<LetsWrite />} />
+      <Route path="/lets-write-user" element={<LetsWrite />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/registration" element={<RegistrationPage />} />
       <Route path="/profile" element={<ProfilePage />} />
