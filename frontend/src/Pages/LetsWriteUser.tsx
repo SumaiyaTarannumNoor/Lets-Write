@@ -2,15 +2,12 @@ import React, { useState, useRef, useEffect } from "react";
 import { Settings, AlertCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-import NavbarUser from "../Components/Layout/NavbarUser";
+import Navbar from "../Components/Layout/Navbar";
 import Footer from "../Components/Layout/Footer";
 import letsWrite from "../assets/letsWrite.png";
 
 import "../../styles/LetsWrite.css";
 
-/* =========================
-   API CALL (CLEAN ONLY)
-========================= */
 const generateText = async (prompt: string, length: number): Promise<string> => {
   const API_URL = "http://localhost:5000/api/generate";
 
@@ -107,7 +104,7 @@ const LetsWriteUser: React.FC = () => {
     <div className="letswrite-bg min-h-screen flex flex-col">
 
       {/* NAVBAR (LOGGED IN VERSION) */}
-      <NavbarUser />
+      <Navbar />
 
       <div className="flex-1 flex flex-col">
         <div className="container mx-auto px-4 py-8 max-w-6xl">
