@@ -186,7 +186,7 @@ const ChatMistral = () => {
                 `,
               }}
             >
-              Mistral
+              Mistral 
             </h1>
 
             {/* 🌊 WAVE ANIMATION */}
@@ -303,6 +303,8 @@ const ChatMistral = () => {
               {messages.length === 0 && (
                 <div className="text-center text-blue-300 mt-20">
                   Start chatting with Mistral...
+                  <br />
+                  This chat does not work anymore as Mistral does not allow free API tokens anymore.
                 </div>
               )}
               {messages.map((msg, i) => (
