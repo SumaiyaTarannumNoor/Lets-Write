@@ -312,7 +312,9 @@ const ChatGroq = () => {
             <div className="max-w-4xl mx-auto space-y-4">
               {messages.length === 0 && (
                 <div className="text-center text-blue-300 mt-20">
-                  Start chatting with Groq...
+                  Start chatting with Mistral...
+                  <br />
+                  This chat does not work anymore as xAI does not allow free API tokens anymore.
                 </div>
               )}
 
